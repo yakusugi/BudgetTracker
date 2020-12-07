@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+  <servlet>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>info.budget.login.Login</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>MonthSelection</servlet-name>
+    <servlet-class>info.budget.monthlySelection.MonthSelector</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>YearSelection</servlet-name>
+    <servlet-class>info.budget.yearSelection.YearSelector</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>BTController</servlet-name>
+    <servlet-class>info.budget.budgettracker.BudgetTrackerController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/BTloginpage</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>MonthSelection</servlet-name>
+    <url-pattern>/BTMonthSelector</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>YearSelection</servlet-name>
+    <url-pattern>/BTYearSelector</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BTController</servlet-name>
+    <url-pattern>/BTController</url-pattern>
+  </servlet-mapping>
+</web-app>
