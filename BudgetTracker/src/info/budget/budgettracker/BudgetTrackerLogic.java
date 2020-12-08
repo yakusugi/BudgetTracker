@@ -17,59 +17,61 @@ public class BudgetTrackerLogic {
 	private String type;
 	private String price;
 
-	// DBŠÖ˜A‚Ì‰Šúİ’è
+	// DBé–¢é€£ã®åˆæœŸè¨­å®š
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
-	private DataSource ds = null;
+	protected DataSource ds = null;
 	private ResultSet rset = null;
 
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	public BudgetTrackerLogic(HttpServletRequest request) {
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	public BudgetTrackerLogic(HttpServletRequest request, DataSource  ds) {
 
-		setId(request.getParameter("id"));
-		setDate(request.getParameter("date"));
-		setStoreName(request.getParameter("storeName"));
-		setProductName(request.getParameter("productName"));
-		setType(request.getParameter("type"));
-		setPrice(request.getParameter("price"));
-	}
+        setId(request.getParameter("id"));
+        setDate(request.getParameter("date"));
+        setStoreName(request.getParameter("storeName"));
+        setProductName(request.getParameter("productName"));
+        setType(request.getParameter("type"));
+        setPrice(request.getParameter("price"));
+                this.ds = ds;
+    }
+   //çœç•¥
 
-	// // ƒf[ƒ^ƒx[ƒX‚Ö‚ÌƒAƒNƒVƒ‡ƒ“
+	// // ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã¸ã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	// private void doDataBase(String sql) throws Exception {
 	//
-	// // ƒRƒ“ƒeƒLƒXƒg‚ğæ“¾
+	// // ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
 	// InitialContext ic = new InitialContext();
-	// // ƒ‹ƒbƒNƒAƒbƒv‚µ‚Äƒf[ƒ^ƒ\[ƒX‚ğæ“¾
+	// // ãƒ«ãƒƒã‚¯ã‚¢ãƒƒãƒ—ã—ã¦ãƒ‡ãƒ¼ã‚¿ã‚½ãƒ¼ã‚¹ã‚’å–å¾—
 	// ds = (DataSource) ic.lookup("java:comp/env/jdbc/searchman");
 	// conn = ds.getConnection();
 	//
-	// // sql•¶‚ğ•\¦
+	// // sqlæ–‡ã‚’è¡¨ç¤º
 	// System.out.println(sql);
 	// pstmt = conn.prepareStatement(sql);
-	// // sql•¶Às
+	// // sqlæ–‡å®Ÿè¡Œ
 	// pstmt.execute();
 	//
-	// // g—p‚µ‚½ƒIƒuƒWƒFƒNƒg‚ğI—¹‚³‚¹‚é
+	// // ä½¿ç”¨ã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’çµ‚äº†ã•ã›ã‚‹
 	// pstmt.close();
 	// conn.close();
 	// }
 
-	// ƒf[ƒ^ƒx[ƒX‚Ö‚ÌƒAƒNƒVƒ‡ƒ“
+	// ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã¸ã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 	protected void doDataBase(String sql) throws Exception {
 
-		// ƒRƒ“ƒeƒLƒXƒg‚ğæ“¾
+		// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
 		InitialContext ic = new InitialContext();
-		// ƒ‹ƒbƒNƒAƒbƒv‚µ‚Äƒf[ƒ^ƒ\[ƒX‚ğæ“¾
+		// ãƒ«ãƒƒã‚¯ã‚¢ãƒƒãƒ—ã—ã¦ãƒ‡ãƒ¼ã‚¿ã‚½ãƒ¼ã‚¹ã‚’å–å¾—
 		ds = (DataSource) ic.lookup("java:comp/env/jdbc/searchman");
 		conn = ds.getConnection();
 
-		// sql•¶‚ğ•\¦
+		// sqlæ–‡ã‚’è¡¨ç¤º
 		System.out.println(sql);
 		pstmt = conn.prepareStatement(sql);
-		// sql•¶Às
+		// sqlæ–‡å®Ÿè¡Œ
 		pstmt.execute();
 
-		// g—p‚µ‚½ƒIƒuƒWƒFƒNƒg‚ğI—¹‚³‚¹‚é
+		// ä½¿ç”¨ã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’çµ‚äº†ã•ã›ã‚‹
 		pstmt.close();
 		conn.close();
 	}
