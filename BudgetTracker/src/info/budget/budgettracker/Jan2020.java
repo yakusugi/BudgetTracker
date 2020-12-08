@@ -13,42 +13,42 @@ public class Jan2020 extends BudgetTrackerLogic {
 
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
-	private DataSource ds = null;
+	protected static DataSource ds = null;
 	
-	public Jan2020(HttpServletRequest request) {
-		super(request);
+	public Jan2020(HttpServletRequest request, DataSource ds) {
+		super(request, ds);
 		// TODO Auto-generated constructor stub
 	}
 	
 
-	// ‰Šú‰»ˆ—
+	// åˆæœŸåŒ–å‡¦ç†
 //	public void init() throws ServletException {
 //		try {
-//			// ‰ŠúƒRƒ“ƒeƒLƒXƒg‚ğæ“¾
+//			// åˆæœŸã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
 //			InitialContext ic = new InitialContext();
-//			// ƒ‹ƒbƒNƒAƒbƒv‚µ‚Äƒf[ƒ^ƒ\[ƒX‚ğæ“¾
+//			// ãƒ«ãƒƒã‚¯ã‚¢ãƒƒãƒ—ã—ã¦ãƒ‡ãƒ¼ã‚¿ã‚½ãƒ¼ã‚¹ã‚’å–å¾—
 //			ds = (DataSource) ic.lookup("java:comp/env/jdbc/searchman");
 //		} catch (Exception e) {
 //
 //		}
 //	}
 	
-	// ƒf[ƒ^ƒx[ƒX‚Ö‚ÌƒAƒNƒVƒ‡ƒ“
+	// ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã¸ã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
 		protected void doDataBase(String sql) throws Exception {
 
-			// ƒRƒ“ƒeƒLƒXƒg‚ğæ“¾
-			InitialContext ic = new InitialContext();
-			// ƒ‹ƒbƒNƒAƒbƒv‚µ‚Äƒf[ƒ^ƒ\[ƒX‚ğæ“¾
-			ds = (DataSource) ic.lookup("java:comp/env/jdbc/searchman");
-			conn = ds.getConnection();
+			// ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
+//			InitialContext ic = new InitialContext();
+//			// ãƒ«ãƒƒã‚¯ã‚¢ãƒƒãƒ—ã—ã¦ãƒ‡ãƒ¼ã‚¿ã‚½ãƒ¼ã‚¹ã‚’å–å¾—
+//			ds = (DataSource) ic.lookup("java:comp/env/jdbc/searchman");
+//			conn = ds.getConnection();
 
-			// sql•¶‚ğ•\¦
+			// sqlæ–‡ã‚’è¡¨ç¤º
 			System.out.println(sql);
 			pstmt = conn.prepareStatement(sql);
-			// sql•¶Às
+			// sqlæ–‡å®Ÿè¡Œ
 			pstmt.execute();
 
-			// g—p‚µ‚½ƒIƒuƒWƒFƒNƒg‚ğI—¹‚³‚¹‚é
+			// ä½¿ç”¨ã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’çµ‚äº†ã•ã›ã‚‹
 			pstmt.close();
 			conn.close();
 		}
@@ -61,7 +61,7 @@ public class Jan2020 extends BudgetTrackerLogic {
 			
 			String sql = null;
 			
-			// sql•¶ ‚Ìì¬
+			// sqlæ–‡ ã®ä½œæˆ
 			sql = "insert into Jan2020(id, Date, StoreName, ProductName, type, Price) values (?, ?, ?, ?, ?, ?);";
 			
 			pstmt.setString(1, this.getId());
@@ -71,7 +71,7 @@ public class Jan2020 extends BudgetTrackerLogic {
 			pstmt.setString(5, this.getType());
 			pstmt.setString(6, this.getPrice());
 	
-			// ƒf[ƒ^ƒx[ƒXÚ‘±•‚“‚‘‚Œ‚ÌÀs
+			// ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹æ¥ç¶šï¼†ï½“ï½‘ï½Œã®å®Ÿè¡Œ
 			doDataBase(sql);
 			
 			return true;
