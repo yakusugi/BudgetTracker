@@ -1,10 +1,14 @@
 package info.budget.budgettracker;
 
 import java.io.IOException;
+
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 
 public class BudgetTrackerController extends HttpServlet {
 
@@ -13,45 +17,66 @@ public class BudgetTrackerController extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private InitialContext ic;  
+
+    public void init() throws ServletException {
+    // åˆæœŸã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
+    try {
+		ic = new InitialContext();
+	} catch (NamingException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+	
 	
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-		// •¶šƒR[ƒh‚Ìİ’è
+		// æ–‡å­—ã‚³ãƒ¼ãƒ‰ã®è¨­å®š
 		request.setCharacterEncoding("Windows-31J");
 
-		// mode‚Ìæ“¾
+		// modeã®å–å¾—
 		String mode = request.getParameter("mode");
 
-		// ÀsƒXƒe[ƒ^ƒX‚ÌéŒ¾
+		// å®Ÿè¡Œã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®å®£è¨€
 		String status = "Successed!";
+		
+		// ãƒ‡ãƒ¼ã‚¿ã‚½ãƒ¼ã‚¹ã®å–å¾—
+		DataSource ds = null;
+		try {
+			ds = (DataSource) ic.lookup("java:comp/env/jdbc/searchman");
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		// JavaBeans‚Ì‰Šú‰»
-		//BudgetBeans‚Ö’l‚ğ—¬‚·
+		// JavaBeansã®åˆæœŸåŒ–
+		//BudgetBeansã¸å€¤ã‚’æµã™
 		
 
 		switch (mode) {
 
-		case "addJan2020": // “o˜^
-			BudgetTrackerLogic btLogicJan2020 = new Jan2020(request);
-			if (btLogicJan2020.addData() == false) {
-				status = "Failed!";
-			}
-			break;
+		case "addJan2020": // ç™»éŒ²
+            BudgetTrackerLogic btLogicJan2020 = new Jan2020(request, ds);
+            if (btLogicJan2020.addData() == false) {
+                status = "Failed!";
+            }
+            break;
 			
-//		case "delete": // íœ
+//		case "delete": // å‰Šé™¤
 //			if (budgetInfo.deleteData() == false) {
 //				status = "Failed!";
 //			}
 //			break;
 //			
-//		case "change": // •ÏX
+//		case "change": // å¤‰æ›´
 //			request.setAttribute("budgetInfo", budgetInfo);
 //			request.getRequestDispatcher("/change.jsp").forward(request, response);
 //			return;
 //
-//		case "del_add": // •ÏXŠm’è
+//		case "del_add": // å¤‰æ›´ç¢ºå®š
 //			if (!(budgetInfo.deleteData() && budgetInfo.addData())) {
 //				status = "Failed";
 //			}
@@ -59,9 +84,9 @@ public class BudgetTrackerController extends HttpServlet {
 
 		}
 
-		// status‚ğƒZƒbƒg‚µ‚ÄAresult.jsp‚É“]‘—
-		request.setAttribute("status", status);
-		request.getRequestDispatcher("/result.jsp").forward(request, response);
+		// statusã‚’ã‚»ãƒƒãƒˆã—ã¦ã€result.jspã«è»¢é€
+        request.setAttribute("status", status);
+        request.getRequestDispatcher("/result.jsp").forward(request, response);
 
 	}
 	
