@@ -59,10 +59,11 @@ public class Jan2020 extends BudgetTrackerLogic {
 		try {
 			
 			
-			String sql = null;
+			//String sql = null;
+			StringBuilder sql = new StringBuilder();
 			
 			// sql文 の作成
-			sql = "insert into Jan2020(id, Date, StoreName, ProductName, type, Price) values (?, ?, ?, ?, ?, ?);";
+			sql.append("insert into Jan2020(id, Date, StoreName, ProductName, type, Price) values (?, ?, ?, ?, ?, ?);");
 			
 			pstmt.setString(1, this.getId());
 			pstmt.setString(2, this.getDate());
