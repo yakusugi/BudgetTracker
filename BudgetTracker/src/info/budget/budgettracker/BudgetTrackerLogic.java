@@ -52,13 +52,13 @@ public abstract class BudgetTrackerLogic {
 		pstmt.setString(6, this.getPrice());
 		
 		// sql文実行
-		int res = pstmt.execute();
+		boolean res = pstmt.execute(); 
 
 		// 使用したオブジェクトを終了させる
 		pstmt.close();
 		// conn.close(); Webサーバー側のコネクションを使っているためコネクションはクローズしない
 
-		return (res > 0);
+		 return res;
 	}
 
 	// サブクラスからテーブル名を返す
