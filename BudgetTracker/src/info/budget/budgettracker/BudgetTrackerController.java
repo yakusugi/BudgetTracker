@@ -11,25 +11,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 public class BudgetTrackerController extends HttpServlet {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	
 	private InitialContext ic;  
 
     public void init() throws ServletException {
-    // 初期コンテキストを取得
-    try {
-		ic = new InitialContext();
-	} catch (NamingException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+    	// 初期コンテキストを取得
+    	try {
+			ic = new InitialContext();
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-}
-	
-	
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -53,35 +46,10 @@ public class BudgetTrackerController extends HttpServlet {
 		}
 
 		// JavaBeansの初期化
-		//BudgetBeansへ値を流す
-		
+		BudgetTrackerLogic btLogic = BudgetTrackerLogicFactory.createBudgetTrackerLogic((request, ds, mode);
 
-		switch (mode) {
-
-		case "addJan2020": // 登録
-            BudgetTrackerLogic btLogicJan2020 = new Jan2020(request, ds);
-            if (btLogicJan2020.addData() == false) {
-                status = "Failed!";
-            }
-            break;
-			
-//		case "delete": // 削除
-//			if (budgetInfo.deleteData() == false) {
-//				status = "Failed!";
-//			}
-//			break;
-//			
-//		case "change": // 変更
-//			request.setAttribute("budgetInfo", budgetInfo);
-//			request.getRequestDispatcher("/change.jsp").forward(request, response);
-//			return;
-//
-//		case "del_add": // 変更確定
-//			if (!(budgetInfo.deleteData() && budgetInfo.addData())) {
-//				status = "Failed";
-//			}
-//			break;
-
+        if (btLogic.addData() == false) {
+            status = "Failed!";
 		}
 
 		// statusをセットして、result.jspに転送

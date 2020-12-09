@@ -8,7 +8,7 @@ import javax.naming.InitialContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
-public class BudgetTrackerLogic {
+public abstract class BudgetTrackerLogic {
 	// private String yearMonth;
 	private String id;
 	private String date;
@@ -18,10 +18,7 @@ public class BudgetTrackerLogic {
 	private String price;
 
 	// DB関連の初期設定
-	private Connection conn = null;
-	private PreparedStatement pstmt = null;
 	protected DataSource ds = null;
-	private ResultSet rset = null;
 
 	// コンストラクタ
 	public BudgetTrackerLogic(HttpServletRequest request, DataSource  ds) {
@@ -32,49 +29,40 @@ public class BudgetTrackerLogic {
         setProductName(request.getParameter("productName"));
         setType(request.getParameter("type"));
         setPrice(request.getParameter("price"));
-                this.ds = ds;
+        this.ds = ds;
     }
-   //省略
-
-	// // データベースへのアクション
-	// private void doDataBase(String sql) throws Exception {
-	//
-	// // コンテキストを取得
-	// InitialContext ic = new InitialContext();
-	// // ルックアップしてデータソースを取得
-	// ds = (DataSource) ic.lookup("java:comp/env/jdbc/searchman");
-	// conn = ds.getConnection();
-	//
-	// // sql文を表示
-	// System.out.println(sql);
-	// pstmt = conn.prepareStatement(sql);
-	// // sql文実行
-	// pstmt.execute();
-	//
-	// // 使用したオブジェクトを終了させる
-	// pstmt.close();
-	// conn.close();
-	// }
 
 	// データベースへのアクション
-	protected void doDataBase(String sql) throws Exception {
+	// データの追加を実施
+	public boolean addData() throws Exception {
 
-		// コンテキストを取得
-		InitialContext ic = new InitialContext();
-		// ルックアップしてデータソースを取得
-		ds = (DataSource) ic.lookup("java:comp/env/jdbc/searchman");
-		conn = ds.getConnection();
+		Connection conn = ds.getConnection();
+		String tableNm = getTableName();
 
 		// sql文を表示
+		String sql = "insert into " + tableNm + "(id, Date, StoreName, ProductName, type, Price) values (?, ?, ?, ?, ?, ?);";
 		System.out.println(sql);
-		pstmt = conn.prepareStatement(sql);
+
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, this.getId());
+		pstmt.setString(2, this.getDate());
+		pstmt.setString(3, this.getStoreName());
+		pstmt.setString(4, this.getProductName());
+		pstmt.setString(5, this.getType());
+		pstmt.setString(6, this.getPrice());
+		
 		// sql文実行
-		pstmt.execute();
+		int res = pstmt.execute();
 
 		// 使用したオブジェクトを終了させる
 		pstmt.close();
-		conn.close();
+		// conn.close(); Webサーバー側のコネクションを使っているためコネクションはクローズしない
+
+		return (res > 0);
 	}
+
+	// サブクラスからテーブル名を返す
+	protected abstract String getTableName();
 
 	public String getId() {
 		return id;
@@ -124,22 +112,6 @@ public class BudgetTrackerLogic {
 		this.price = price;
 	}
 
-	public Connection getConn() {
-		return conn;
-	}
-
-	public void setConn(Connection conn) {
-		this.conn = conn;
-	}
-
-	public PreparedStatement getPstmt() {
-		return pstmt;
-	}
-
-	public void setPstmt(PreparedStatement pstmt) {
-		this.pstmt = pstmt;
-	}
-
 	public DataSource getDs() {
 		return ds;
 	}
@@ -147,9 +119,4 @@ public class BudgetTrackerLogic {
 	public void setDs(DataSource ds) {
 		this.ds = ds;
 	}
-
-	public Boolean addData() {
-		return true;
-	}
-
 }
