@@ -46,7 +46,7 @@ public class BudgetTrackerController extends HttpServlet {
 		}
 
 		// JavaBeansの初期化
-		BudgetTrackerLogic btLogic = BudgetTrackerLogicFactory.createBudgetTrackerLogic((request, ds, mode);
+		BudgetTrackerLogic btLogic = BudgetTrackerLogicFactory.createBudgetTrackerLogic((request, ds, mode));
 
         if (btLogic.addData() == false) {
             status = "Failed!";
