@@ -34,7 +34,7 @@ public class BudgetTrackerController extends HttpServlet {
 		String mode = request.getParameter("mode");
 
 		// 実行ステータスの宣言
-		String status = "Successed!";
+		String status = "Successful!";
 		
 		// データソースの取得
 		DataSource ds = null;
