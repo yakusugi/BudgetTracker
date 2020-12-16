@@ -7,19 +7,6 @@
 <title>Login Success Page</title>
 </head>
 <body>
-<!-- 
- 	<form action="/BudgetTracker/BTMonthSelector" method="POST">
-	
-		
-		<input type="radio" name="months" value="January"> January <br />
-		<input type="radio" name="months" value="February"> February <br />
-		<input type="radio" name="months" value="March"> March <br />
-		
-		
-		<br /> <input type="submit" value="Submit">
-
-	</form>
--->
 	<form action="/BudgetTracker/BTYearSelector" method="POST">
 	
 		
