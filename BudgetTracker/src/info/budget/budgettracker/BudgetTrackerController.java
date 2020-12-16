@@ -15,7 +15,7 @@ public class BudgetTrackerController extends HttpServlet {
 	private InitialContext ic;  
 
     public void init() throws ServletException {
-    	// åˆæœŸã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
+    	// ‰ŠúƒRƒ“ƒeƒLƒXƒg‚ğæ“¾
     	try {
 			ic = new InitialContext();
 		} catch (NamingException e) {
@@ -27,16 +27,16 @@ public class BudgetTrackerController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-		// æ–‡å­—ã‚³ãƒ¼ãƒ‰ã®è¨­å®š
+		// •¶šƒR[ƒh‚Ìİ’è
 		request.setCharacterEncoding("Windows-31J");
 
-		// modeã®å–å¾—
+		// mode‚Ìæ“¾
 		String mode = request.getParameter("mode");
 
-		// å®Ÿè¡Œã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®å®£è¨€
+		// ÀsƒXƒe[ƒ^ƒX‚ÌéŒ¾
 		String status = "Successful!";
 		
-		// ãƒ‡ãƒ¼ã‚¿ã‚½ãƒ¼ã‚¹ã®å–å¾—
+		// ƒf[ƒ^ƒ\[ƒX‚Ìæ“¾
 		DataSource ds = null;
 		try {
 			ds = (DataSource) ic.lookup("java:comp/env/jdbc/searchman");
@@ -45,19 +45,17 @@ public class BudgetTrackerController extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		// JavaBeansã®åˆæœŸåŒ–
-		BBudgetTrackerLogic btLogic = BudgetTrackerLogicFactory.createBudgetTrackerLogic(request, ds, mode);
+		// JavaBeans‚Ì‰Šú‰»
+		BudgetTrackerLogic btLogic = BudgetTrackerLogicFactory.createBudgetTrackerLogic(request, ds, mode);
 
-                try {
-			if (btLogic.addData() == false) {
-			    status = "Failed!";
-			}
+		try {
+		    btLogic.addData();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		    e.printStackTrace();
+		        status = "Failed!";
 		}
 
-		// statusã‚’ã‚»ãƒƒãƒˆã—ã¦ã€result.jspã«è»¢é€
+		// status‚ğƒZƒbƒg‚µ‚ÄAresult.jsp‚É“]‘—
         request.setAttribute("status", status);
         request.getRequestDispatcher("/result.jsp").forward(request, response);
 
