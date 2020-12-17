@@ -61,7 +61,7 @@ public class BudgetTrackerSearchController extends HttpServlet {
 		
 		// statusをセットして、result.jspに転送
         request.setAttribute("status", status);
-        //request.getAttribute("SqlResult", rset);
+        request.getAttribute("SqlResult", rset);
         request.getRequestDispatcher("/searchResult.jsp").forward(request, response);
 
 	}

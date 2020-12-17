@@ -36,7 +36,7 @@ public abstract class BudgetTrackerSearchLogic {
 
 	// データベースへのアクション
 	// データの追加を実施
-	public boolean searchData() throws Exception {
+	public ResultSet searchData() throws Exception {
 
 		Connection conn = ds.getConnection();
 		String tableNm = getTableName();
@@ -86,13 +86,15 @@ public abstract class BudgetTrackerSearchLogic {
 		
 		ServletRequest request = null;
 		request.setAttribute("SqlResult", rset);
+		
+		return rset;
 
 		// 使用したオブジェクトを終了させる
 		pstmt.close();
 		// conn.close(); Webサーバー側のコネクションを使っているためコネクションはクローズしない
 		
 
-		return res;
+		//return res;
 	}
 
 	// サブクラスからテーブル名を返す
