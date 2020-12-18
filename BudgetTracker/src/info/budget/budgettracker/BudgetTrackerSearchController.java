@@ -50,18 +50,19 @@ public class BudgetTrackerSearchController extends HttpServlet {
 
 		// JavaBeansの初期化
 		BudgetTrackerSearchLogic btSearchLogic = BudgetTrackerSearchLogicFactory.createBudgetTrackerLogic(request, ds, mode);
-
+		
+		ResultSet rset = null;
 		try {
-			btSearchLogic.searchData();
+			rset  = btSearchLogic.searchData();
 		} catch (Exception e) {
-		    e.printStackTrace();
-		        status = "Failed!";
+			e.printStackTrace();
+	        status = "Failed!";
 		}
 	
 		
 		// statusをセットして、result.jspに転送
         request.setAttribute("status", status);
-        request.getAttribute("SqlResult", rset);
+        request.setAttribute("SqlResult", rset);
         request.getRequestDispatcher("/searchResult.jsp").forward(request, response);
 
 	}

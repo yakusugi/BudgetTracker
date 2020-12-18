@@ -90,7 +90,7 @@ public abstract class BudgetTrackerSearchLogic {
 		return rset;
 
 		// 使用したオブジェクトを終了させる
-		pstmt.close();
+		//pstmt.close();
 		// conn.close(); Webサーバー側のコネクションを使っているためコネクションはクローズしない
 		
 
