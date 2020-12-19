@@ -86,11 +86,11 @@ public abstract class BudgetTrackerSearchLogic {
 		
 		ServletRequest request = null;
 		request.setAttribute("SqlResult", rset);
+		// 使用したオブジェクトを終了させる
+		pstmt.close();
 		
 		return rset;
 
-		// 使用したオブジェクトを終了させる
-		//pstmt.close();
 		// conn.close(); Webサーバー側のコネクションを使っているためコネクションはクローズしない
 		
 
