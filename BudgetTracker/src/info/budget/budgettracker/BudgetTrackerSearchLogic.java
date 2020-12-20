@@ -20,7 +20,7 @@ public abstract class BudgetTrackerSearchLogic {
 
 	// DB関連の初期設定
 	protected DataSource ds = null;
-	ResultSet[] rset = null;
+	ResultSet rset = null;
 
 	// コンストラクタ
 	public BudgetTrackerSearchLogic(HttpServletRequest request, DataSource ds) {
@@ -82,13 +82,15 @@ public abstract class BudgetTrackerSearchLogic {
 
 		// sql文実行
 		boolean res = pstmt.execute();
-		rset[0] = pstmt.executeQuery();
+		rset = pstmt.executeQuery();
 		
 		
 		// 使用したオブジェクトを終了させる
-		pstmt.close();
+		//pstmt.close();
 		
-		return rset[0];
+		return rset;
+		
+		
 		
 		
 
