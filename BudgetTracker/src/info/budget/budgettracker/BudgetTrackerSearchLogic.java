@@ -20,7 +20,7 @@ public abstract class BudgetTrackerSearchLogic {
 
 	// DB関連の初期設定
 	protected DataSource ds = null;
-	ResultSet rset = null;
+	ResultSet[] rset = null;
 
 	// コンストラクタ
 	public BudgetTrackerSearchLogic(HttpServletRequest request, DataSource ds) {
@@ -82,14 +82,15 @@ public abstract class BudgetTrackerSearchLogic {
 
 		// sql文実行
 		boolean res = pstmt.execute();
-		rset = pstmt.executeQuery();
+		rset[0] = pstmt.executeQuery();
 		
-		ServletRequest request = null;
-		request.setAttribute("SqlResult", rset);
+		
 		// 使用したオブジェクトを終了させる
 		pstmt.close();
 		
-		return rset;
+		return rset[0];
+		
+		
 
 		// conn.close(); Webサーバー側のコネクションを使っているためコネクションはクローズしない
 		
