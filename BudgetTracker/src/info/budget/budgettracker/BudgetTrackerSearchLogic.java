@@ -18,11 +18,11 @@ public abstract class BudgetTrackerSearchLogic {
 	private String type;
 	private String price;
 
-	// DBŠÖ˜A‚Ì‰Šúİ’è
+	// DBé–¢é€£ã®åˆæœŸè¨­å®š
 	protected DataSource ds = null;
 	ResultSet rset = null;
 
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	public BudgetTrackerSearchLogic(HttpServletRequest request, DataSource ds) {
 
 		setId(request.getParameter("id"));
@@ -34,15 +34,15 @@ public abstract class BudgetTrackerSearchLogic {
 		this.ds = ds;
 	}
 
-	// ƒf[ƒ^ƒx[ƒX‚Ö‚ÌƒAƒNƒVƒ‡ƒ“
-	// ƒf[ƒ^‚Ì’Ç‰Á‚ğÀ{
+	// ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã¸ã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³
+	// ãƒ‡ãƒ¼ã‚¿ã®è¿½åŠ ã‚’å®Ÿæ–½
 	public ResultSet searchData() throws Exception {
 
 		Connection conn = ds.getConnection();
 		String tableNm = getTableName();
 		StringBuilder sql = new StringBuilder();
 
-		// sql•¶‚ğ•\¦
+		// sqlæ–‡ã‚’è¡¨ç¤º
 		sql.append("select id, Date, StoreName, ProductName, type, Price from " + tableNm + " where StoreName like '%'");
 		//sql.append(storeName + "%'");
 		System.out.println(sql);
@@ -80,13 +80,13 @@ public abstract class BudgetTrackerSearchLogic {
 		PreparedStatement pstmt = conn.prepareStatement(new String(sql));
 		
 
-		// sql•¶Às
+		// sqlæ–‡å®Ÿè¡Œ
 		boolean res = pstmt.execute();
 		rset = pstmt.executeQuery();
 		
 		
-		// g—p‚µ‚½ƒIƒuƒWƒFƒNƒg‚ğI—¹‚³‚¹‚é
-		//pstmt.close();
+		// ä½¿ç”¨ã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’çµ‚äº†ã•ã›ã‚‹
+		pstmt.close();
 		
 		return rset;
 		
@@ -94,13 +94,13 @@ public abstract class BudgetTrackerSearchLogic {
 		
 		
 
-		// conn.close(); WebƒT[ƒo[‘¤‚ÌƒRƒlƒNƒVƒ‡ƒ“‚ğg‚Á‚Ä‚¢‚é‚½‚ßƒRƒlƒNƒVƒ‡ƒ“‚ÍƒNƒ[ƒY‚µ‚È‚¢
+		// conn.close(); Webã‚µãƒ¼ãƒãƒ¼å´ã®ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã‚’ä½¿ã£ã¦ã„ã‚‹ãŸã‚ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ã¯ã‚¯ãƒ­ãƒ¼ã‚ºã—ãªã„
 		
 
 		//return res;
 	}
 
-	// ƒTƒuƒNƒ‰ƒX‚©‚çƒe[ƒuƒ‹–¼‚ğ•Ô‚·
+	// ã‚µãƒ–ã‚¯ãƒ©ã‚¹ã‹ã‚‰ãƒ†ãƒ¼ãƒ–ãƒ«åã‚’è¿”ã™
 	protected abstract String getTableName();
 
 	public String getId() {
