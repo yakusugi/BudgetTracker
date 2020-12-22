@@ -1,9 +1,6 @@
 package info.budget.budgettracker;
 
 import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -13,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-public class BudgetTrackerSearchController extends HttpServlet {
+public class BudgetTrackerDeleteController extends HttpServlet {
 	
-	private InitialContext ic;
+	private InitialContext ic;  
 
     public void init() throws ServletException {
     	// 初期コンテキストを取得
@@ -49,21 +46,18 @@ public class BudgetTrackerSearchController extends HttpServlet {
 		}
 
 		// JavaBeansの初期化
-		BudgetTrackerSearchLogic btSearchLogic = BudgetTrackerSearchLogicFactory.createBudgetTrackerLogic(request, ds, mode);
+		BudgetTrackerDeleteLogic btDeleteLogic = BudgetTrackerDeleteLogicFactory.createBudgetTrackerDeleteLogic(request, ds, mode);
 		
-		ResultSet rset = null;
 		try {
-			rset  = btSearchLogic.searchData();
+			btDeleteLogic.deleteData();
 		} catch (Exception e) {
-			e.printStackTrace();
-	        status = "Failed!";
+		    e.printStackTrace();
+		        status = "Failed!";
 		}
-	
-		
+
 		// statusをセットして、result.jspに転送
         request.setAttribute("status", status);
-        request.setAttribute("SqlResult", rset);
-        request.getRequestDispatcher("/searchResultJan2020.jsp").forward(request, response);
+        request.getRequestDispatcher("/result.jsp").forward(request, response);
 
 	}
 	

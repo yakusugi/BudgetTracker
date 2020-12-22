@@ -47,7 +47,7 @@ public class BudgetTrackerController extends HttpServlet {
 
 		// JavaBeans‚Ì‰Šú‰»
 		BudgetTrackerLogic btLogic = BudgetTrackerLogicFactory.createBudgetTrackerLogic(request, ds, mode);
-
+		
 		try {
 		    btLogic.addData();
 		} catch (Exception e) {
