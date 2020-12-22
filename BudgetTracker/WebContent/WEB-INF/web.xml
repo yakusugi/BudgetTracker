@@ -20,6 +20,10 @@
     <servlet-name>BTSeearchController</servlet-name>
     <servlet-class>info.budget.budgettracker.BudgetTrackerSearchController</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>BudgetTrackerDeleteController</servlet-name>
+    <servlet-class>info.budget.budgettracker.BudgetTrackerDeleteController</servlet-class>
+  </servlet>
   
   
   
@@ -42,6 +46,10 @@
   <servlet-mapping>
     <servlet-name>BTSeearchController</servlet-name>
     <url-pattern>/BTSeearchController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BudgetTrackerDeleteController</servlet-name>
+    <url-pattern>/BudgetTrackerDeleteController</url-pattern>
   </servlet-mapping>
   
   
