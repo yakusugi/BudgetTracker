@@ -9,7 +9,7 @@
 	<br>
 
 	<%
-		ResultSet rset = (ResultSet) request.getAttribute("SqlResult");
+	List<BudgetTrackerSearchDto> rset = (List<BudgetTrackerSearchDto>) request.getAttribute("SqlResult");
 	%>
 	<table border="1">
 		<tr bgcolor="#cccccc">
