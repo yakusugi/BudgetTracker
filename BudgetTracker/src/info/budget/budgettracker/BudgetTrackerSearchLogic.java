@@ -3,6 +3,8 @@ package info.budget.budgettracker;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.InitialContext;
 import javax.servlet.ServletRequest;
@@ -20,7 +22,7 @@ public abstract class BudgetTrackerSearchLogic {
 
 	// DB関連の初期設定
 	protected DataSource ds = null;
-	ResultSet rset = null;
+	//ResultSet rset = null;
 
 	// コンストラクタ
 	public BudgetTrackerSearchLogic(HttpServletRequest request, DataSource ds) {
@@ -36,8 +38,11 @@ public abstract class BudgetTrackerSearchLogic {
 
 	// データベースへのアクション
 	// データの追加を実施
-	public ResultSet searchData() throws Exception {
-
+	public List<BudgetTrackerSearchDto> searchData() {
+		
+		List<BudgetTrackerSearchDto> btsList = new ArrayList<>();
+		
+		
 		Connection conn = ds.getConnection();
 		String tableNm = getTableName();
 		StringBuilder sql = new StringBuilder();
@@ -79,16 +84,28 @@ public abstract class BudgetTrackerSearchLogic {
 
 		PreparedStatement pstmt = conn.prepareStatement(new String(sql));
 		
-
 		// sql文実行
 		//boolean res = pstmt.execute();
-		rset = pstmt.executeQuery();
+		try(ResultSet rset = pstmt.executeQuery()) {
+			while(rset.next()) {
+				//dtoをインスタンス化
+				BudgetTrackerSearchDto btsdto = new BudgetTrackerSearchDto();
+				btsdto.setId("id");
+				btsdto.setDate("date");
+				btsdto.setStoreName("storeName");
+				btsdto.setProductName("productName");
+				btsdto.setType("type");
+				btsdto.setPrice("price");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		
 		// 使用したオブジェクトを終了させる
 		//pstmt.close();
 		
-		return rset;
+		return btsList;
 
 		// conn.close(); Webサーバー側のコネクションを使っているためコネクションはクローズしない
 		

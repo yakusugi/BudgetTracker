@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -51,7 +52,7 @@ public class BudgetTrackerSearchController extends HttpServlet {
 		// JavaBeansÇÃèâä˙âª
 		BudgetTrackerSearchLogic btSearchLogic = BudgetTrackerSearchLogicFactory.createBudgetTrackerLogic(request, ds, mode);
 		
-		ResultSet rset = null;
+		List<BudgetTrackerSearchDto> rset = null;
 		try {
 			rset  = btSearchLogic.searchData();
 		} catch (Exception e) {
