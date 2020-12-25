@@ -3,6 +3,7 @@ package info.budget.budgettracker;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public abstract class BudgetTrackerSearchLogic {
 
 	// DB関連の初期設定
 	protected DataSource ds = null;
-	//ResultSet rset = null;
+	// ResultSet rset = null;
 
 	// コンストラクタ
 	public BudgetTrackerSearchLogic(HttpServletRequest request, DataSource ds) {
@@ -38,18 +39,18 @@ public abstract class BudgetTrackerSearchLogic {
 
 	// データベースへのアクション
 	// データの追加を実施
-	public List<BudgetTrackerSearchDto> searchData() {
-		
+	public List<BudgetTrackerSearchDto> searchData() throws SQLException {
+
 		List<BudgetTrackerSearchDto> btsList = new ArrayList<>();
-		
-		
+
 		Connection conn = ds.getConnection();
 		String tableNm = getTableName();
 		StringBuilder sql = new StringBuilder();
 
 		// sql文を表示
-		sql.append("select id, Date, StoreName, ProductName, type, Price from " + tableNm + " where StoreName like '%'");
-		//sql.append(storeName + "%'");
+		sql.append(
+				"select id, Date, StoreName, ProductName, type, Price from " + tableNm + " where StoreName like '%'");
+		// sql.append(storeName + "%'");
 		System.out.println(sql);
 
 		// if id is selected, add it
@@ -83,35 +84,40 @@ public abstract class BudgetTrackerSearchLogic {
 		}
 
 		PreparedStatement pstmt = conn.prepareStatement(new String(sql));
-		
+
 		// sql文実行
-		//boolean res = pstmt.execute();
-		try(ResultSet rset = pstmt.executeQuery()) {
-			while(rset.next()) {
-				//dtoをインスタンス化
+		// boolean res = pstmt.execute();
+		try (ResultSet rset = pstmt.executeQuery()) {
+			while (rset.next()) {
+				// dtoをインスタンス化
 				BudgetTrackerSearchDto btsdto = new BudgetTrackerSearchDto();
-				btsdto.setId("id");
-				btsdto.setDate("date");
-				btsdto.setStoreName("storeName");
-				btsdto.setProductName("productName");
-				btsdto.setType("type");
-				btsdto.setPrice("price");
-			} catch (Exception e) {
-				e.printStackTrace();
+				btsdto.setId(rset.getString(1));
+				btsdto.setDate(rset.getString(2));
+				btsdto.setStoreName(rset.getString(3));
+				btsdto.setProductName(rset.getString(4));
+				btsdto.setType(rset.getString(5));
+				btsdto.setPrice(rset.getString(6));
+
+				btsList.add(btsdto);
+				
+				return btsList;
 			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		
-		// 使用したオブジェクトを終了させる
-		//pstmt.close();
-		
 		return btsList;
-
-		// conn.close(); Webサーバー側のコネクションを使っているためコネクションはクローズしない
-		
-
-		//return res;
 	}
+
+	// 使用したオブジェクトを終了させる
+	// pstmt.close();
+
+	//return btsList;
+
+	// conn.close(); Webサーバー側のコネクションを使っているためコネクションはクローズしない
+
+	// return res;
+	
 
 	// サブクラスからテーブル名を返す
 	protected abstract String getTableName();

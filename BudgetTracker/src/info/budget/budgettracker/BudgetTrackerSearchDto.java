@@ -7,6 +7,7 @@ public class BudgetTrackerSearchDto {
 	private String productName;
 	private String type;
 	private String price;
+	
 	public String getId() {
 		return id;
 	}
