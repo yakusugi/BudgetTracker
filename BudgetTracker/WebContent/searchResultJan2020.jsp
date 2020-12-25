@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html;charset=Windows-31J"%>
 <%@page import="java.sql.*"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="info.budget.budgettracker.BudgetTrackerSearchDto"%>
+;
 
 <html>
 <head>
@@ -11,6 +15,7 @@
 	<%
 	List<BudgetTrackerSearchDto> rset = (List<BudgetTrackerSearchDto>) request.getAttribute("SqlResult");
 	%>
+	<!-- ‚±‚±‚Å‚»‚ê‚¼‚ê‚Ì—ñ–¼‚ð•\Ž¦ -->
 	<table border="1">
 		<tr bgcolor="#cccccc">
 			<td><b>ID</b></td>
@@ -23,27 +28,28 @@
 			<td><b>Modify</b></td>
 		</tr>
 		<%
-			while (rset.next()) {
+			//BudgetTrackerSearchDto btsDto = new BudgetTrackerSearchDto();
+			(int data : rset) {
 		%>
 		<tr>
-			<td><%=rset.getString(1)%></td>
-			<td><%=rset.getString(2)%></td>
-			<td><%=rset.getString(3)%></td>
-			<td><%=rset.getString(4)%></td>
-			<td><%=rset.getString(5)%></td>
-			<td><%=rset.getString(6)%></td>
+			<td><%=this.getId%></td>
+			<td><%=this.getDate%></td>
+			<td><%=this.getStoreName%></td>
+			<td><%=this.getProductName%></td>
+			<td><%=this.getType%></td>
+			<td><%=this.getPrice%></td>
 			<td><a href="BudgetTrackerDeleteController?&mode=deleteJan2020&id=<%=rset.getString(1)%>">Delete</a></td>
 			<td>
 				<form action="/BudgetTracker/BudgetTrackerDeleteController" method="POST">
 					<input type="hidden" name="mode" value="change"> 
 					<input
-						type="hidden" name="id" value="<%=rset.getString(1)%>"> 
+						type="hidden" name="id" value="<%=this.getId%>"> 
 					<input
-						type="hidden" name="date" value="<%=rset.getString(2)%>">
-					<input type="hidden" name="storeName" value="<%=rset.getString(3)%>">
-					<input type="hidden" name="productName" value="<%=rset.getString(4)%>">
-					<input type="hidden" name="type" value="<%=rset.getString(5)%>">
-					<input type="hidden" name="price" value="<%=rset.getString(6)%>">
+						type="hidden" name="date" value="<%=this.getDate%>">
+					<input type="hidden" name="storeName" value="<%=this.getStoreName%>">
+					<input type="hidden" name="productName" value="<%=this.getProductName%>">
+					<input type="hidden" name="type" value="<%=this.getType%>">
+					<input type="hidden" name="price" value="<%=this.getPrice%>">
 					<input type="submit" value="Modify">
 				</form>
 			</td>
