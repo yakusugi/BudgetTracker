@@ -3,7 +3,6 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="info.budget.budgettracker.BudgetTrackerSearchDto"%>
-;
 
 <html>
 <head>
@@ -29,27 +28,27 @@
 		</tr>
 		<%
 			//BudgetTrackerSearchDto btsDto = new BudgetTrackerSearchDto();
-			(int data : rset) {
+			for (BudgetTrackerSearchDto btsDto : rset) {
 		%>
 		<tr>
-			<td><%=this.getId%></td>
-			<td><%=this.getDate%></td>
-			<td><%=this.getStoreName%></td>
-			<td><%=this.getProductName%></td>
-			<td><%=this.getType%></td>
-			<td><%=this.getPrice%></td>
-			<td><a href="BudgetTrackerDeleteController?&mode=deleteJan2020&id=<%=rset.getString(1)%>">Delete</a></td>
+			<td><%=btsDto.getId()%></td>
+			<td><%=btsDto.getDate()%></td>
+			<td><%=btsDto.getStoreName()%></td>
+			<td><%=btsDto.getProductName()%></td>
+			<td><%=btsDto.getType()%></td>
+			<td><%=btsDto.getPrice()%></td>
+			<td><a href="BudgetTrackerDeleteController?&mode=deleteJan2020&id=<%=btsDto.getId()%>">Delete</a></td>
 			<td>
 				<form action="/BudgetTracker/BudgetTrackerDeleteController" method="POST">
 					<input type="hidden" name="mode" value="change"> 
 					<input
-						type="hidden" name="id" value="<%=this.getId%>"> 
+						type="hidden" name="id" value="<%=btsDto.getId()%>"> 
 					<input
-						type="hidden" name="date" value="<%=this.getDate%>">
-					<input type="hidden" name="storeName" value="<%=this.getStoreName%>">
-					<input type="hidden" name="productName" value="<%=this.getProductName%>">
-					<input type="hidden" name="type" value="<%=this.getType%>">
-					<input type="hidden" name="price" value="<%=this.getPrice%>">
+						type="hidden" name="date" value="<%=btsDto.getDate()%>">
+					<input type="hidden" name="storeName" value="<%=btsDto.getStoreName()%>">
+					<input type="hidden" name="productName" value="<%=btsDto.getProductName()%>">
+					<input type="hidden" name="type" value="<%=btsDto.getType()%>">
+					<input type="hidden" name="price" value="<%=btsDto.getPrice()%>">
 					<input type="submit" value="Modify">
 				</form>
 			</td>
