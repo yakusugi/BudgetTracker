@@ -40,7 +40,9 @@ public abstract class BudgetTrackerDeleteLogic {
 		String tableNm = getTableName();
 
 		// sql•¶‚ð•\Ž¦
-		String sql = "delete from " + tableNm +  " where id = " + this.getId();
+		//String sql = "insert into " + tableNm + "(id, Date, StoreName, ProductName, type, Price) values (?, ?, ?, ?, ?, ?);";
+		String sql = "delete from " + tableNm +  " where id = ?;";
+
 		System.out.println(sql);
 
 		PreparedStatement pstmt = conn.prepareStatement(sql);
