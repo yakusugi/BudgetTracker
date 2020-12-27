@@ -100,7 +100,6 @@ public abstract class BudgetTrackerSearchLogic {
 
 				btsList.add(btsdto);
 				
-				return btsList;
 			}
 
 		} catch (Exception e) {
