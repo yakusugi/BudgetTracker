@@ -9,7 +9,10 @@
 	<SELECT NAME="type">
 		<OPTION VALUE="" selected></OPTION>
 			<OPTION VALUE="昼食">昼食</OPTION>
+			<OPTION VALUE="夕食">夕食</OPTION>
+			<OPTION VALUE="軽食">軽食</OPTION>
 			<OPTION VALUE="服">服</OPTION>
+			
 	</SELECT>
 
 </body>

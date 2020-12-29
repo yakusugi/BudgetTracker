@@ -10,7 +10,19 @@
 		<OPTION VALUE="" selected></OPTION>
 		<OPTION VALUE="バーミヤン">バーミヤン</OPTION>
 		<OPTION VALUE="Watt mann">Watt mann</OPTION>
-		<OPTION VALUE="test">test</OPTION>
+		<OPTION VALUE="海鮮問屋 お魚どうらく">海鮮問屋 お魚どうらく</OPTION>
+		<OPTION VALUE="KFC">KFC</OPTION>
+		<OPTION VALUE="STARBUCKS">STARBUCKS</OPTION>
+		<OPTION VALUE="そば処　名古屋">そば処　名古屋</OPTION>
+		<OPTION VALUE="NewDays">NewDays</OPTION>
+		<OPTION VALUE="カフェベローチェ">カフェベローチェ</OPTION>
+		<OPTION VALUE="DexeeDiner">DexeeDiner</OPTION>
+		<OPTION VALUE="大戸屋">大戸屋</OPTION>
+		<OPTION VALUE="FamilyMart">FamilyMart</OPTION>
+		<OPTION VALUE="すき家">すき家</OPTION>
+		<OPTION VALUE="Bellmart Kiosk">Bellmart Kiosk</OPTION>
+		<OPTION VALUE="セブン-イレブン">セブン-イレブン</OPTION>
+		<OPTION VALUE="山かつ">山かつ</OPTION>
 		
 	</SELECT>
 
