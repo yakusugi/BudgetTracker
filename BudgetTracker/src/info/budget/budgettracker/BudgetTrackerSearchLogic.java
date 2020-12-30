@@ -118,7 +118,7 @@ public abstract class BudgetTrackerSearchLogic {
 	
 			// sql文を表示
 			sql.append(
-					"select StoreName, sum(price) from " + tableNm + " group by StoreName order by sum(price) desc");
+					"select StoreName,sum(price) from " + tableNm + " group by StoreName order by sum(price) desc");
 			// sql.append(storeName + "%'");
 			System.out.println(sql);
 	
@@ -131,12 +131,12 @@ public abstract class BudgetTrackerSearchLogic {
 				while (rset.next()) {
 					// dtoをインスタンス化
 					BudgetTrackerSearchDto btsdto = new BudgetTrackerSearchDto();
-					btsdto.setId(rset.getString(1));
-					btsdto.setDate(rset.getString(2));
-					btsdto.setStoreName(rset.getString(3));
-					btsdto.setProductName(rset.getString(4));
-					btsdto.setType(rset.getString(5));
-					btsdto.setPrice(rset.getString(6));
+//					btsdto.setId(rset.getString(1));
+//					btsdto.setDate(rset.getString(2));
+					btsdto.setStoreName(rset.getString(1));
+//					btsdto.setProductName(rset.getString(4));
+//					btsdto.setType(rset.getString(5));
+					btsdto.setPrice(rset.getString(2));
 	
 					btsList.add(btsdto);
 					
