@@ -38,7 +38,10 @@ public class BudgetTrackerSearchController extends HttpServlet {
 		String mode = request.getParameter("mode");
 		String searchJan2020 = "searchJan2020";
 		String searchByStoreNameDescJan2020 = "searchByStoreNameDescJan2020";
-
+		String searchByTypeDescJan2020 = "searchByTypeDescJan2020";
+		String modifyJan2020 = "modifyJan2020";
+		String delAddJan2020 = "delAddJan2020";
+				
 		// 実行ステータスの宣言
 		String status = "Successful!";
 
@@ -83,7 +86,42 @@ public class BudgetTrackerSearchController extends HttpServlet {
 			// statusをセットして、result.jspに転送
 			request.setAttribute("status", status);
 			request.setAttribute("SqlResult", rset);
-			request.getRequestDispatcher("/searchByStoreNameDescJan2020.jsp").forward(request, response);
+			request.getRequestDispatcher("/searchResultByStoreNameDesc.jsp").forward(request, response);
+		} else if (mode.equals(searchByTypeDescJan2020)) {
+			BudgetTrackerSearchLogic btSearchLogic = BudgetTrackerSearchLogicFactory.createBudgetTrackerLogic(request,
+					ds, mode);
+
+			List<BudgetTrackerSearchDto> rset = null;
+			try {
+				rset = btSearchLogic.searchByTypeDescJan2020();
+			} catch (Exception e) {
+				e.printStackTrace();
+				status = "Failed!";
+			}
+
+			// statusをセットして、result.jspに転送
+			request.setAttribute("status", status);
+			request.setAttribute("SqlResult", rset);
+			request.getRequestDispatcher("/searchResultByType.jsp").forward(request, response);
+		} else if (mode.equals(modifyJan2020)){
+			BudgetTrackerSearchLogic btSearchLogic = BudgetTrackerSearchLogicFactory.createBudgetTrackerLogic(request,
+					ds, mode);
+			request.setAttribute("btSearchLogic", btSearchLogic);
+			request.getRequestDispatcher("/searchResultModifyJan2020.jsp").forward(request, response);
+			return;
+			
+		} else if (mode.equals(delAddJan2020)){
+			BudgetTrackerLogic btLogic = BudgetTrackerLogicFactory.createBudgetTrackerLogic(request, ds, mode);
+			BudgetTrackerDeleteLogic btDeleteLogic = BudgetTrackerDeleteLogicFactory.createBudgetTrackerDeleteLogic(request, ds, mode);
+			
+			try {
+				if (!(btDeleteLogic.deleteData() && btLogic.addData())) {
+					status = "Failed";
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 			System.out.println("do nothing");
 		}

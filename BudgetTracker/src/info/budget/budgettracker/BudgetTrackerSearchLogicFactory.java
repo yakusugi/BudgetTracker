@@ -18,9 +18,21 @@ public class BudgetTrackerSearchLogicFactory {
                 res = new Jan2020Search(request, ds);
                 break;
                 // クラスを増やすときにcaseを追加
+            case "searchByTypeDescJan2020":
+                res = new Jan2020Search(request, ds);
+                break;
+                // クラスを増やすときにcaseを追加
+            case "modifyJan2020":
+                res = new Jan2020Search(request, ds);
+                break;
+                // クラスを増やすときにcaseを追加
+            case "delAddJan2020":
+                res = new Jan2020Search(request, ds);
+                break;
+                // クラスを増やすときにcaseを追加
             case "searchFeb2020":
                 res = new Feb2020Search(request, ds);
-                break;
+                break;               
                 // クラスを増やすときにcaseを追加
             default:
                 break;

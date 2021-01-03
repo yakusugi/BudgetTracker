@@ -147,6 +147,46 @@ public abstract class BudgetTrackerSearchLogic {
 			}
 			return btsList;
 		}
+		
+		public List<BudgetTrackerSearchDto> searchByTypeDescJan2020() throws SQLException {
+			
+			List<BudgetTrackerSearchDto> btsList = new ArrayList<>();
+	
+			Connection conn = ds.getConnection();
+			String tableNm = getTableName();
+			StringBuilder sql = new StringBuilder();
+	
+			// sql文を表示
+			sql.append(
+					"select type, sum(price) from " + tableNm + " group by type order by sum(price) desc");
+			// sql.append(storeName + "%'");
+			System.out.println(sql);
+	
+	
+			PreparedStatement pstmt = conn.prepareStatement(new String(sql));
+	
+			// sql文実行
+			// boolean res = pstmt.execute();
+			try (ResultSet rset = pstmt.executeQuery()) {
+				while (rset.next()) {
+					// dtoをインスタンス化
+					BudgetTrackerSearchDto btsdto = new BudgetTrackerSearchDto();
+//					btsdto.setId(rset.getString(1));
+//					btsdto.setDate(rset.getString(2));
+//					btsdto.setStoreName(rset.getString(1));
+//					btsdto.setProductName(rset.getString(4));
+					btsdto.setType(rset.getString(1));
+					btsdto.setPrice(rset.getString(2));
+	
+					btsList.add(btsdto);
+					
+				}
+	
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return btsList;
+		}
 	
 
 	// サブクラスからテーブル名を返す
