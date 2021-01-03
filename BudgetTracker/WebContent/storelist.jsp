@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Store List</title>
 </head>
 <body>
 	<SELECT NAME="storeName">
@@ -23,6 +23,7 @@
 		<OPTION VALUE="Bellmart Kiosk">Bellmart Kiosk</OPTION>
 		<OPTION VALUE="ƒZƒuƒ“-ƒCƒŒƒuƒ“">ƒZƒuƒ“-ƒCƒŒƒuƒ“</OPTION>
 		<OPTION VALUE="ŽR‚©‚Â">ŽR‚©‚Â</OPTION>
+		<OPTION VALUE="ƒGƒ~ƒbƒgƒJƒtƒF">ƒGƒ~ƒbƒgƒJƒtƒF</OPTION>
 		
 	</SELECT>
 

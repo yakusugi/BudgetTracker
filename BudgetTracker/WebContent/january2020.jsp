@@ -49,6 +49,16 @@
 			type="submit" value="Search">
 	</form>
 	
+	Search by Type
+	<br/><br/>
+	
+	<form action="/BudgetTracker/BTSeearchController" method="POST">
+		Type <%@include file="productTypeList.jsp" %>
+		<br>
+		<br> <input type="hidden" name="mode" value="searchByTypeDescJan2020"> <input
+			type="submit" value="Search">
+	</form>
+	
 	
 
 </body>

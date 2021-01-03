@@ -39,8 +39,8 @@
 			<td><%=btsDto.getPrice()%></td>
 			<td><a href="BudgetTrackerDeleteController?&mode=deleteJan2020&id=<%=btsDto.getId()%>">Delete</a></td>
 			<td>
-				<form action="/BudgetTracker/BudgetTrackerDeleteController" method="POST">
-					<input type="hidden" name="mode" value="change"> 
+				<form action="/BudgetTracker/BTSeearchController" method="POST">
+					<input type="hidden" name="mode" value="modifyJan2020"> 
 					<input
 						type="hidden" name="id" value="<%=btsDto.getId()%>"> 
 					<input

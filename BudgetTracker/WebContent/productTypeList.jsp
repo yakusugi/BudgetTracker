@@ -12,6 +12,8 @@
 			<OPTION VALUE="夕食">夕食</OPTION>
 			<OPTION VALUE="軽食">軽食</OPTION>
 			<OPTION VALUE="服">服</OPTION>
+			<OPTION VALUE="雑貨">雑貨</OPTION>
+			<OPTION VALUE="食品">食品</OPTION>
 			
 	</SELECT>
 
