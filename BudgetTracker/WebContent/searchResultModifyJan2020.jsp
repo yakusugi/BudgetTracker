@@ -17,7 +17,8 @@
 	Change(Modify)
 	<br/><br/>
 	<form action="/BudgetTracker/BTController" method="POST">
-		ID: <%=btSearchLogic.getId()%>（Unchangeable）
+		ID: <input type="hidden" name="id"
+			value="<%=btSearchLogic.getId()%>"> （Unchangeable）
 		Date: <input type="text"name="date" value="<%=btSearchLogic.getDate()%>"> 
 		Store Name： <%@include file="storelist.jsp" %>
 		</SELECT>
