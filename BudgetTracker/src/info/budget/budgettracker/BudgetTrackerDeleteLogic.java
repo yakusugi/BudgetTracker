@@ -39,7 +39,10 @@ public abstract class BudgetTrackerDeleteLogic {
 
 		
 		// sql文実行
-		boolean res = pstmt.execute();
+		//boolean res = pstmt.execute();
+		int n = pstmt.executeUpdate();
+		System.out.println("delete num " + n);
+		boolean res = (n > 0);
 
 		// 使用したオブジェクトを終了させる
 		pstmt.close();
