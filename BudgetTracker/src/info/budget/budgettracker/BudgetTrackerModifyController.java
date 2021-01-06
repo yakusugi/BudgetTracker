@@ -1,6 +1,7 @@
 package info.budget.budgettracker;
 
 import java.io.IOException;
+import java.sql.PreparedStatement;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -33,6 +34,7 @@ public class BudgetTrackerModifyController extends HttpServlet {
 		// modeの取得
 		String mode = request.getParameter("mode");
 		String delAddJan2020 = "delAddJan2020";
+		PreparedStatement pstm = null;
 
 		// 実行ステータスの宣言
 		String status = "Successful!";
@@ -55,6 +57,7 @@ public class BudgetTrackerModifyController extends HttpServlet {
 			
 			
 			try {
+				pstm.executeUpdate();
 				btDeleteLogic.deleteData();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
