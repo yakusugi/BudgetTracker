@@ -118,6 +118,8 @@ public class BudgetTrackerSearchController extends HttpServlet {
 				if (!(btDeleteLogic.deleteData() && btLogic.addData())) {
 					status = "Failed";
 				}
+				request.setAttribute("status", status);
+		        request.getRequestDispatcher("/result.jsp").forward(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
