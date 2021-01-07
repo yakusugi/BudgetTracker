@@ -16,7 +16,7 @@
 	<br/><br/>
 	Change(Modify)
 	<br/><br/>
-	<form action="/BudgetTracker/BTController" method="POST">
+	<form action="/BudgetTracker/BTSeearchController" method="POST">
 		ID: <input type="hidden" name="id"
 			value="<%=btSearchLogic.getId()%>"> ÅiUnchangeableÅj
 		Date: <input type="text"name="date" value="<%=btSearchLogic.getDate()%>"> 
