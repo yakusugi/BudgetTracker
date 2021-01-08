@@ -17,6 +17,7 @@ import javax.sql.DataSource;
 public class BudgetTrackerSearchController extends HttpServlet {
 
 	private InitialContext ic;
+	boolean bool = true;
 
 	public void init() throws ServletException {
 		// 初期コンテキストを取得
@@ -115,11 +116,16 @@ public class BudgetTrackerSearchController extends HttpServlet {
 			BudgetTrackerDeleteLogic btDeleteLogic = BudgetTrackerDeleteLogicFactory.createBudgetTrackerDeleteLogic(request, ds, mode);
 			
 			try {
-				if (!(btDeleteLogic.deleteData() && btLogic.addData())) {
-					status = "Failed";
+				if ((btDeleteLogic.deleteData())) {
+					if ((btLogic.addData())) {
+						bool = true;
+					}
+						
+										
+//					status = "Failed";
 				}
-				request.setAttribute("status", status);
-		        request.getRequestDispatcher("/result.jsp").forward(request, response);
+				request.setAttribute("bool", bool);
+		        request.getRequestDispatcher("/modifyResult.jsp").forward(request, response);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
