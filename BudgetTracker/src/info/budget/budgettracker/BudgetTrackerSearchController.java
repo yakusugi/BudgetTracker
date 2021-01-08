@@ -119,6 +119,8 @@ public class BudgetTrackerSearchController extends HttpServlet {
 				if ((btDeleteLogic.deleteData())) {
 					if ((btLogic.addData())) {
 						bool = true;
+					} else {
+						bool = false;
 					}
 						
 										
