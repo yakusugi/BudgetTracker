@@ -39,7 +39,7 @@ public abstract class BudgetTrackerSearchLogic {
 
 	// データベースへのアクション
 	// データの追加を実施
-	public List<BudgetTrackerSearchDto> searchData() throws SQLException {
+	public List<BudgetTrackerSearchDto> searchDataJan2020() throws SQLException {
 
 		List<BudgetTrackerSearchDto> btsList = new ArrayList<>();
 
@@ -99,7 +99,7 @@ public abstract class BudgetTrackerSearchLogic {
 				btsdto.setPrice(rset.getString(6));
 
 				btsList.add(btsdto);
-				
+
 			}
 
 		} catch (Exception e) {
@@ -108,86 +108,162 @@ public abstract class BudgetTrackerSearchLogic {
 		return btsList;
 	}
 
-		public List<BudgetTrackerSearchDto> searchStoreNameDescJan2020() throws SQLException {
-	
-			List<BudgetTrackerSearchDto> btsList = new ArrayList<>();
-	
-			Connection conn = ds.getConnection();
-			String tableNm = getTableName();
-			StringBuilder sql = new StringBuilder();
-	
-			// sql文を表示
-			sql.append(
-					"select StoreName,sum(price) from " + tableNm + " group by StoreName order by sum(price) desc");
-			// sql.append(storeName + "%'");
-			System.out.println(sql);
-	
-	
-			PreparedStatement pstmt = conn.prepareStatement(new String(sql));
-	
-			// sql文実行
-			// boolean res = pstmt.execute();
-			try (ResultSet rset = pstmt.executeQuery()) {
-				while (rset.next()) {
-					// dtoをインスタンス化
-					BudgetTrackerSearchDto btsdto = new BudgetTrackerSearchDto();
-//					btsdto.setId(rset.getString(1));
-//					btsdto.setDate(rset.getString(2));
-					btsdto.setStoreName(rset.getString(1));
-//					btsdto.setProductName(rset.getString(4));
-//					btsdto.setType(rset.getString(5));
-					btsdto.setPrice(rset.getString(2));
-	
-					btsList.add(btsdto);
-					
-				}
-	
-			} catch (Exception e) {
-				e.printStackTrace();
+	public List<BudgetTrackerSearchDto> searchStoreNameDescJan2020() throws SQLException {
+
+		List<BudgetTrackerSearchDto> btsList = new ArrayList<>();
+
+		Connection conn = ds.getConnection();
+		String tableNm = getTableName();
+		StringBuilder sql = new StringBuilder();
+
+		// sql文を表示
+		sql.append("select StoreName,sum(price) from " + tableNm + " group by StoreName order by sum(price) desc");
+		// sql.append(storeName + "%'");
+		System.out.println(sql);
+
+		PreparedStatement pstmt = conn.prepareStatement(new String(sql));
+
+		// sql文実行
+		// boolean res = pstmt.execute();
+		try (ResultSet rset = pstmt.executeQuery()) {
+			while (rset.next()) {
+				// dtoをインスタンス化
+				BudgetTrackerSearchDto btsdto = new BudgetTrackerSearchDto();
+				// btsdto.setId(rset.getString(1));
+				// btsdto.setDate(rset.getString(2));
+				btsdto.setStoreName(rset.getString(1));
+				// btsdto.setProductName(rset.getString(4));
+				// btsdto.setType(rset.getString(5));
+				btsdto.setPrice(rset.getString(2));
+
+				btsList.add(btsdto);
+
 			}
-			return btsList;
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		public List<BudgetTrackerSearchDto> searchByTypeDescJan2020() throws SQLException {
-			
-			List<BudgetTrackerSearchDto> btsList = new ArrayList<>();
-	
-			Connection conn = ds.getConnection();
-			String tableNm = getTableName();
-			StringBuilder sql = new StringBuilder();
-	
-			// sql文を表示
-			sql.append(
-					"select type, sum(price) from " + tableNm + " group by type order by sum(price) desc");
-			// sql.append(storeName + "%'");
-			System.out.println(sql);
-	
-	
-			PreparedStatement pstmt = conn.prepareStatement(new String(sql));
-	
-			// sql文実行
-			// boolean res = pstmt.execute();
-			try (ResultSet rset = pstmt.executeQuery()) {
-				while (rset.next()) {
-					// dtoをインスタンス化
-					BudgetTrackerSearchDto btsdto = new BudgetTrackerSearchDto();
-//					btsdto.setId(rset.getString(1));
-//					btsdto.setDate(rset.getString(2));
-//					btsdto.setStoreName(rset.getString(1));
-//					btsdto.setProductName(rset.getString(4));
-					btsdto.setType(rset.getString(1));
-					btsdto.setPrice(rset.getString(2));
-	
-					btsList.add(btsdto);
-					
-				}
-	
-			} catch (Exception e) {
-				e.printStackTrace();
+		return btsList;
+		// return new BudgetTrackerSearchLogic(btsList, tableNm);
+		// return new List<BudgetTrackerSearchDto>[] {btsList, tableNm};
+	}
+
+	public List<BudgetTrackerSearchDto> searchByTotalSumOfJan2020() throws SQLException {
+
+		List<BudgetTrackerSearchDto> btsList = new ArrayList<>();
+
+		Connection conn = ds.getConnection();
+		String tableNm = getTableName();
+		StringBuilder sql = new StringBuilder();
+
+		// sql文を表示
+		sql.append("select sum(price) Jan2020_Sum from " + tableNm);
+		// sql.append(storeName + "%'");
+		System.out.println(sql);
+
+		PreparedStatement pstmt = conn.prepareStatement(new String(sql));
+
+		// sql文実行
+		// boolean res = pstmt.execute();
+		try (ResultSet rset = pstmt.executeQuery()) {
+			while (rset.next()) {
+				// dtoをインスタンス化
+				BudgetTrackerSearchDto btsdto = new BudgetTrackerSearchDto();
+				// btsdto.setId(rset.getString(1));
+				// btsdto.setDate(rset.getString(2));
+				// btsdto.setStoreName(rset.getString(1));
+				// btsdto.setProductName(rset.getString(4));
+				// btsdto.setType(rset.getString(1));
+				btsdto.setPrice(rset.getString(1));
+
+				btsList.add(btsdto);
+
 			}
-			return btsList;
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		return btsList;
+	}
 	
+	public List<BudgetTrackerSearchDto> searchByTypeDescJan2020() throws SQLException {
+
+		List<BudgetTrackerSearchDto> btsList = new ArrayList<>();
+
+		Connection conn = ds.getConnection();
+		String tableNm = getTableName();
+		StringBuilder sql = new StringBuilder();
+
+		// sql文を表示
+		sql.append("select type, sum(price) from " + tableNm + " group by type order by sum(price) desc");
+		// sql.append(storeName + "%'");
+		System.out.println(sql);
+
+		PreparedStatement pstmt = conn.prepareStatement(new String(sql));
+
+		// sql文実行
+		// boolean res = pstmt.execute();
+		try (ResultSet rset = pstmt.executeQuery()) {
+			while (rset.next()) {
+				// dtoをインスタンス化
+				BudgetTrackerSearchDto btsdto = new BudgetTrackerSearchDto();
+				// btsdto.setId(rset.getString(1));
+				// btsdto.setDate(rset.getString(2));
+				// btsdto.setStoreName(rset.getString(1));
+				// btsdto.setProductName(rset.getString(4));
+				btsdto.setType(rset.getString(1));
+				btsdto.setPrice(rset.getString(2));
+
+				btsList.add(btsdto);
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return btsList;
+	}
+
+	public List<BudgetTrackerSearchDto> likeSearchByProductNameJan2020() throws SQLException {
+
+		List<BudgetTrackerSearchDto> btsList = new ArrayList<>();
+
+		Connection conn = ds.getConnection();
+		String tableNm = getTableName();
+		StringBuilder sql = new StringBuilder();
+
+		// sql文を表示
+		sql.append(
+				"select id, Date, StoreName, ProductName, type, Price from " + tableNm + " where ProductName LIKE '%" + productName +  "%'");
+		// sql.append(storeName + "%'");
+		System.out.println(sql);
+
+		// if id is selected, add it
+
+		PreparedStatement pstmt = conn.prepareStatement(new String(sql));
+
+		// sql文実行
+		// boolean res = pstmt.execute();
+		try (ResultSet rset = pstmt.executeQuery()) {
+			while (rset.next()) {
+				// dtoをインスタンス化
+				BudgetTrackerSearchDto btsdto = new BudgetTrackerSearchDto();
+				btsdto.setId(rset.getString(1));
+				btsdto.setDate(rset.getString(2));
+				btsdto.setStoreName(rset.getString(3));
+				btsdto.setProductName(rset.getString(4));
+				btsdto.setType(rset.getString(5));
+				btsdto.setPrice(rset.getString(6));
+
+				btsList.add(btsdto);
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return btsList;
+	}
 
 	// サブクラスからテーブル名を返す
 	protected abstract String getTableName();

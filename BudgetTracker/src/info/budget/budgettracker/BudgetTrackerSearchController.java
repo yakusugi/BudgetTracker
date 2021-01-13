@@ -42,7 +42,9 @@ public class BudgetTrackerSearchController extends HttpServlet {
 		String searchByTypeDescJan2020 = "searchByTypeDescJan2020";
 		String modifyJan2020 = "modifyJan2020";
 		String delAddJan2020 = "delAddJan2020";
-				
+		String likeSearchByProductNameJan2020 = "likeSearchByProductNameJan2020";
+		String searchByTotalSumOfJan2020 = "searchByTotalSumOfJan2020";
+			
 		// 実行ステータスの宣言
 		String status = "Successful!";
 
@@ -62,7 +64,7 @@ public class BudgetTrackerSearchController extends HttpServlet {
 
 			List<BudgetTrackerSearchDto> rset = null;
 			try {
-				rset = btSearchLogic.searchData();
+				rset = btSearchLogic.searchDataJan2020();
 			} catch (Exception e) {
 				e.printStackTrace();
 				status = "Failed!";
@@ -122,9 +124,7 @@ public class BudgetTrackerSearchController extends HttpServlet {
 					} else {
 						bool = false;
 					}
-						
-										
-//					status = "Failed";
+
 				}
 				request.setAttribute("bool", bool);
 		        request.getRequestDispatcher("/modifyResult.jsp").forward(request, response);
@@ -132,6 +132,38 @@ public class BudgetTrackerSearchController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		} else if (mode.equals(likeSearchByProductNameJan2020)){
+			BudgetTrackerSearchLogic btSearchLogic = BudgetTrackerSearchLogicFactory.createBudgetTrackerLogic(request,
+					ds, mode);
+
+			List<BudgetTrackerSearchDto> rset = null;
+			try {
+				rset = btSearchLogic.likeSearchByProductNameJan2020();
+			} catch (Exception e) {
+				e.printStackTrace();
+				status = "Failed!";
+			}
+
+			// statusをセットして、result.jspに転送
+			request.setAttribute("status", status);
+			request.setAttribute("SqlResult", rset);
+			request.getRequestDispatcher("/searchResultJan2020.jsp").forward(request, response);
+		} else if (mode.equals(searchByTotalSumOfJan2020)) {
+			BudgetTrackerSearchLogic btSearchLogic = BudgetTrackerSearchLogicFactory.createBudgetTrackerLogic(request,
+					ds, mode);
+
+			List<BudgetTrackerSearchDto> rset = null;
+			try {
+				rset = btSearchLogic.searchByTotalSumOfJan2020();
+			} catch (Exception e) {
+				e.printStackTrace();
+				status = "Failed!";
+			}
+
+			// statusをセットして、result.jspに転送
+			request.setAttribute("status", status);
+			request.setAttribute("SqlResult", rset);
+			request.getRequestDispatcher("/searchByTotalSumOfJan2020.jsp").forward(request, response);
 		} else {
 			System.out.println("do nothing");
 		}
