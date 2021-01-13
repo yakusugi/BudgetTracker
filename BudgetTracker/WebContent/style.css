@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+body {
+	background-color: #fffeee;
+}
+
+h1 {
+	font-family: 'Alfa Slab One', cursive;
+}
+
+.indexh2 {
+	color: #ffffff
+}
+
+.indexul {
+	color: #ffffff
+}
+
+div {
+	font-family: 'Anton', sans-serif;
+}
+
+p {
+	font-size: 20px text-align: justify;
+}
+
+body {
+  background-repeat: no-repeat;
+  background-size: auto;
+}

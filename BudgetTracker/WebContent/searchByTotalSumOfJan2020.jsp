@@ -1,4 +1,4 @@
-77<%@ page language="java" contentType="text/html;charset=Windows-31J"%>
+<%@ page language="java" contentType="text/html;charset=Windows-31J"%>
 <%@page import="java.sql.*"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -17,15 +17,13 @@
 	<!-- ‚±‚±‚Å‚»‚ê‚¼‚ê‚Ì—ñ–¼‚ð•\Ž¦ -->
 	<table border="1">
 		<tr bgcolor="#cccccc">
-			<td><b>Store Name</b></td>	
-			<td><b>Price</b></td>	
+			<td><b>Price(sum) of January 2020</b></td>	
 		</tr>
 		<%
 			//BudgetTrackerSearchDto btsDto = new BudgetTrackerSearchDto();
 			for (BudgetTrackerSearchDto btsDto : rset) {
 		%>
-		<tr>
-			<td><%=btsDto.getStoreName()%></td>		
+		<tr>		
 			<td><%=btsDto.getPrice()%></td>	
 		</tr>
 		<%
