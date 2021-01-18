@@ -73,7 +73,7 @@ public class BudgetTrackerSearchController extends HttpServlet {
 			// statusをセットして、result.jspに転送
 			request.setAttribute("status", status);
 			request.setAttribute("SqlResult", rset);
-			request.getRequestDispatcher("/searchResultJan2020.jsp").forward(request, response);
+			request.getRequestDispatcher("/searchResult.jsp").forward(request, response);
 		} else if (mode.equals(searchByStoreNameDescJan2020)) {
 			BudgetTrackerSearchLogic btSearchLogic = BudgetTrackerSearchLogicFactory.createBudgetTrackerLogic(request,
 					ds, mode);
@@ -114,7 +114,7 @@ public class BudgetTrackerSearchController extends HttpServlet {
 			return;
 			
 		} else if (mode.equals(delAddJan2020)){
-			BudgetTrackerLogic btLogic = BudgetTrackerLogicFactory.createBudgetTrackerLogic(request, ds, mode);
+			BudgetTrackerAddLogic btLogic = BudgetTrackerAddLogicFactory.createBudgetTrackerLogic(request, ds, mode);
 			BudgetTrackerDeleteLogic btDeleteLogic = BudgetTrackerDeleteLogicFactory.createBudgetTrackerDeleteLogic(request, ds, mode);
 			
 			try {
