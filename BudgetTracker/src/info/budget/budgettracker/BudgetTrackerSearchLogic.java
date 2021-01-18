@@ -14,8 +14,6 @@ import javax.sql.DataSource;
 
 public abstract class BudgetTrackerSearchLogic {
 	// private String yearMonth;
-	private String year;
-	private String month;
 	private String id;
 	private String date;
 	private String storeName;
@@ -46,8 +44,7 @@ public abstract class BudgetTrackerSearchLogic {
 		List<BudgetTrackerSearchDto> btsList = new ArrayList<>();
 
 		Connection conn = ds.getConnection();
-//		String tableNm = getTableName();
-		String tableNm = year.concat(month);
+		String tableNm = getTableName();
 		StringBuilder sql = new StringBuilder();
 
 		// sql•¶‚ð•\Ž¦
