@@ -5,20 +5,13 @@
     <servlet-class>info.budget.login.Login</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>MonthSelection</servlet-name>
-    <servlet-class>info.budget.monthlySelection.MonthSelector</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>YearSelection</servlet-name>
-    <servlet-class>info.budget.yearSelection.YearSelector</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>BTController</servlet-name>
-    <servlet-class>info.budget.budgettracker.BudgetTrackerController</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>BTSeearchController</servlet-name>
+    <servlet-name>BudgetTrackerSearchController</servlet-name>
     <servlet-class>info.budget.budgettracker.BudgetTrackerSearchController</servlet-class>
+  </servlet>
+  <!-- BTController = Insert  -->
+  <servlet>
+    <servlet-name>BudgetTrackerAddController</servlet-name>
+    <servlet-class>info.budget.budgettracker.BudgetTrackerAddController</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>BudgetTrackerDeleteController</servlet-name>
@@ -28,28 +21,18 @@
     <servlet-name>BTModifyController</servlet-name>
     <servlet-class>info.budget.budgettracker.BudgetTrackerModifyController</servlet-class>
   </servlet>
-  
-  
-  
+
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
     <url-pattern>/BTloginpage</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>MonthSelection</servlet-name>
-    <url-pattern>/BTMonthSelector</url-pattern>
+    <servlet-name>BudgetTrackerSearchController</servlet-name>
+    <url-pattern>/BudgetTracker</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>YearSelection</servlet-name>
-    <url-pattern>/BTYearSelector</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>BTController</servlet-name>
-    <url-pattern>/BTController</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>BTSeearchController</servlet-name>
-    <url-pattern>/BTSeearchController</url-pattern>
+    <servlet-name>BudgetTrackerAddController</servlet-name>
+    <url-pattern>/add</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>BudgetTrackerDeleteController</servlet-name>
