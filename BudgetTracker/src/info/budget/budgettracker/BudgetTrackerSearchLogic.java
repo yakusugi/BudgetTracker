@@ -14,6 +14,9 @@ import javax.sql.DataSource;
 
 public abstract class BudgetTrackerSearchLogic {
 	// private String yearMonth;
+	
+	private String year;
+	private String month;
 	private String id;
 	private String date;
 	private String storeName;
@@ -27,7 +30,9 @@ public abstract class BudgetTrackerSearchLogic {
 
 	// コンストラクタ
 	public BudgetTrackerSearchLogic(HttpServletRequest request, DataSource ds) {
-
+		
+		setYear(request.getParameter("year"));
+		setMonth(request.getParameter("month"));
 		setId(request.getParameter("id"));
 		setDate(request.getParameter("date"));
 		setStoreName(request.getParameter("storeName"));
@@ -267,6 +272,24 @@ public abstract class BudgetTrackerSearchLogic {
 
 	// サブクラスからテーブル名を返す
 	protected abstract String getTableName();
+	
+	
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
+	}
+	
 
 	public String getId() {
 		return id;

@@ -1,12 +1,14 @@
 package info.budget.budgettracker;
 
 public class BudgetTrackerSearchDto {
+	
 	private String id;
 	private String date;
 	private String storeName;
 	private String productName;
 	private String type;
 	private String price;
+	
 	
 	public String getId() {
 		return id;
