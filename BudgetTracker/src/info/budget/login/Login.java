@@ -98,7 +98,7 @@ public class Login extends HttpServlet {
 
 			// move on to loginResult.jsp or loginResultFailed.jsp
 			if (rset.next()) {
-	            request.getRequestDispatcher("mainpage.jsp").forward(request, response);
+	            request.getRequestDispatcher("mainSearch.jsp").forward(request, response);
 	        } else {
 	            request.getRequestDispatcher("loginfailed.jsp").forward(request, response);
 	        }
