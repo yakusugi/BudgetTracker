@@ -13,7 +13,7 @@
 	<br /> Search
 	<br /> 
 	<br />
-	<form action="./BudgetTracker" method="POST">
+	<form action="./search" method="POST">
 		 Year: <select name="year">
 			<option value="Jan2020">2020</option>
 			<option value="2021">2021</option>

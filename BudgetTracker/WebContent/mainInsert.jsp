@@ -12,7 +12,7 @@
 	<br /> Register
 	<br />
 	<br />
-	<form action="BudgetTracker/add" method="POST">
+	<form action="/BudgetTracker/add" method="POST">
 		ID: <input type="text" name="id"> Date: <input type="text"
 			name="date"> Store Name
 		<%@include file="storelist.jsp"%>

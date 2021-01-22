@@ -28,7 +28,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>BudgetTrackerSearchController</servlet-name>
-    <url-pattern>/BudgetTracker</url-pattern>
+    <url-pattern>/search</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>BudgetTrackerAddController</servlet-name>
