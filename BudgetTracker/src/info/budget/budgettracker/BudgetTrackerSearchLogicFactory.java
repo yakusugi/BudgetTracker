@@ -9,7 +9,7 @@ public class BudgetTrackerSearchLogicFactory {
         HttpServletRequest request, DataSource ds, String year, String month){
     	BudgetTrackerSearchLogic res = null;
     	
-    	if (year.equals(2020) && month.equals("january")) {
+    	if (year.equals("2020") && month.equals("january")) {
     		res = new Jan2020Search(request, ds);
     	}
 
