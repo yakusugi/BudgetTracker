@@ -32,7 +32,6 @@
 		Product Name: <input type="text" name="productName"> 
 		Type: <%@include file="productTypeList.jsp"%>
 		Price: <input type="number" name="price"> <br> <br>
-		<input type="hidden" name="mode" value="searchJan2020">
 		<input type="submit" value="Search">
 	</form>
 
