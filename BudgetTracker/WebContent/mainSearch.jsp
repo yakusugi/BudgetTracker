@@ -15,7 +15,7 @@
 	<br />
 	<form action="./search" method="POST">
 		 Year: <select name="year">
-			<option value="Jan2020">2020</option>
+			<option value="2020">2020</option>
 			<option value="2021">2021</option>
 			<option value="2022">2022</option>
 		</select> 

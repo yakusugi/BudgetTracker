@@ -36,7 +36,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>BudgetTrackerDeleteController</servlet-name>
-    <url-pattern>/BudgetTrackerDeleteController</url-pattern>
+    <url-pattern>/delete</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>BTModifyController</servlet-name>
