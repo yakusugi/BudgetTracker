@@ -32,12 +32,12 @@
 		%>
 		<tr>
 			<td><%=btsDto.getId()%></td>
-			<td><%=btsDto.getDate()%></td>
+			<td><%=btsDto.getDate()%></td>7
 			<td><%=btsDto.getStoreName()%></td>
 			<td><%=btsDto.getProductName()%></td>
 			<td><%=btsDto.getType()%></td>
 			<td><%=btsDto.getPrice()%></td>
-			<td><a href="./delete.jsp">Delete</a></td>
+			<td><a href="./delete?id=<%=btsDto.getId()%>">Delete</td>
 			<td>
 				<form action="/BudgetTracker/BTSeearchController" method="POST">
 					<input type="hidden" name="mode" value="modifyJan2020"> 
