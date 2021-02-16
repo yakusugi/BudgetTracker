@@ -63,7 +63,35 @@ public class BudgetTrackerDeleteController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		String id = request.getParameter("id");
+		
+		// 実行ステータスの宣言
+		String status = "Successful!";
+		
+		// データソースの取得
+		DataSource ds = null;
+		try {
+			ds = (DataSource) ic.lookup("java:comp/env/jdbc/searchman");
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		// JavaBeansの初期化
+		BudgetTrackerDeleteLogic btDeleteLogic = BudgetTrackerDeleteLogicFactory.createBudgetTrackerDeleteLogic(request, ds, id);
+		
+		try {
+			btDeleteLogic.deleteData();
+		} catch (Exception e) {
+		    e.printStackTrace();
+		        status = "Failed!";
+		}
+		
+		// statusをセットして、result.jspに転送
+        request.setAttribute("status", status);
+        request.getRequestDispatcher("/result.jsp").forward(request, response);
+		
 		doPost(request, response);
 	}
 
