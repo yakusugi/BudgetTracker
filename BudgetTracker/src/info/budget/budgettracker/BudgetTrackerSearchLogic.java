@@ -102,6 +102,8 @@ public abstract class BudgetTrackerSearchLogic {
 				btsdto.setProductName(rset.getString(4));
 				btsdto.setType(rset.getString(5));
 				btsdto.setPrice(rset.getString(6));
+				btsdto.setYear(rset.getString(7));
+				btsdto.setMonth(rset.getString(8));
 				
 
 				btsList.add(btsdto);
