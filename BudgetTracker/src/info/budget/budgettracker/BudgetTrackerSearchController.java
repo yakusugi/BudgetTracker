@@ -71,6 +71,8 @@ public class BudgetTrackerSearchController extends HttpServlet {
 				e.printStackTrace();
 				status = "Failed!";
 			}
+			((BudgetTrackerSearchLogic) rset).setYear(year);
+			((BudgetTrackerSearchLogic) rset).setMonth(month);
 
 			// statusをセットして、result.jspに転送
 			request.setAttribute("status", status);

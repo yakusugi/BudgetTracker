@@ -47,11 +47,15 @@ public class BudgetTrackerModifyController extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		String id = request.getParameter("id");
+		String year = request.getParameter("year");
+		String month = request.getParameter("month");
+		
 		//ÉRÉRÉJÉâ
 		
 		if (mode.equals(delAddJan2020)) {
 			// JavaBeansÇÃèâä˙âª
-			BudgetTrackerDeleteLogic btDeleteLogic = BudgetTrackerDeleteLogicFactory.createBudgetTrackerDeleteLogic(request, ds, mode);
+			BudgetTrackerDeleteLogic btDeleteLogic = BudgetTrackerDeleteLogicFactory.createBudgetTrackerDeleteLogic(request, ds, mode, year, month);
 			BudgetTrackerAddLogic btLogic = BudgetTrackerAddLogicFactory.createBudgetTrackerLogic(request, ds, mode);
 			
 			

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 public class BudgetTrackerDeleteLogicFactory {
     
     public static BudgetTrackerDeleteLogic createBudgetTrackerDeleteLogic(
-        HttpServletRequest request, DataSource ds, String mode){
+        HttpServletRequest request, DataSource ds, String mode, String year, String month){
         BudgetTrackerDeleteLogic res = null;
 
         switch(mode) {

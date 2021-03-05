@@ -44,9 +44,13 @@ public class BudgetTrackerDeleteController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		String id = request.getParameter("id");
+		String year = request.getParameter("year");
+		String month = request.getParameter("month");
 
 		// JavaBeansの初期化
-		BudgetTrackerDeleteLogic btDeleteLogic = BudgetTrackerDeleteLogicFactory.createBudgetTrackerDeleteLogic(request, ds, mode);
+		BudgetTrackerDeleteLogic btDeleteLogic = BudgetTrackerDeleteLogicFactory.createBudgetTrackerDeleteLogic(request, ds, mode, year, month);
 		
 		try {
 			btDeleteLogic.deleteData();
@@ -65,6 +69,8 @@ public class BudgetTrackerDeleteController extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String id = request.getParameter("id");
+		String year = request.getParameter("year");
+		String month = request.getParameter("month");
 		
 		// 実行ステータスの宣言
 		String status = "Successful!";
@@ -79,7 +85,7 @@ public class BudgetTrackerDeleteController extends HttpServlet {
 		}
 		
 		// JavaBeansの初期化
-		BudgetTrackerDeleteLogic btDeleteLogic = BudgetTrackerDeleteLogicFactory.createBudgetTrackerDeleteLogic(request, ds, id);
+		BudgetTrackerDeleteLogic btDeleteLogic = BudgetTrackerDeleteLogicFactory.createBudgetTrackerDeleteLogic(request, ds, id, year, month);
 		
 		try {
 			btDeleteLogic.deleteData();
